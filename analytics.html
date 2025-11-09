@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .stats {
+      display: flex;
+      gap: 30px;
+      padding: 40px;
+    }
+    .stat {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      flex: 1;
+      text-align: center;
+      padding: 30px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 1s forwards;
+    }
+    .stat:nth-child(2) { animation-delay: 0.3s; }
+    .stat:nth-child(3) { animation-delay: 0.6s; }
+    @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <h2>My Dashboard</h2>
+      <ul>
+        <li><a href="home.html">🏠 Home</a></li>
+        <li><a href="analytics.html">📊 Analytics</a></li>
+        <li><a href="projects.html">📁 Projects</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+    <main class="main">
+      <header class="navbar">
+        <button id="toggleBtn">☰</button>
+        <span>Analytics</span>
+        <a class="back-btn" href="index.html">🏠 Dashboard</a>
+      </header>
+      <section class="stats">
+        <div class="stat"><h2 id="counter1">0</h2><p>Visits</p></div>
+        <div class="stat"><h2 id="counter2">0</h2><p>Page Views</p></div>
+        <div class="stat"><h2 id="counter3">0</h2><p>Conversions</p></div>
+      </section>
+      <section class="chart"><canvas id="analyticsChart"></canvas></section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Counters
+    const counters = [{ id: "counter1", max: 4580 }, { id: "counter2", max: 12034 }, { id: "counter3", max: 532 }];
+    counters.forEach(counter => {
+      let count = 0, step = Math.ceil(counter.max / 100), el = document.getElementById(counter.id);
+      const interval = setInterval(() => {
+        count += step; if (count >= counter.max) { count = counter.max; clearInterval(interval); }
+        el.textContent = count;
+      }, 20);
+    });
+
+    // Chart
+    const ctx = document.getElementById('analyticsChart').getContext('2d');
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        datasets: [{ label: "Users", data: [500, 700, 1200, 900, 1500], backgroundColor: "rgba(78,115,223,0.2)", borderColor: "#4e73df", fill: true, tension: 0.3 }]
+      }
+    });
+  </script>
+</body>
+</html>
