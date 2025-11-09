@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+    .project-card {
+      perspective: 1000px;
+    }
+    .project-inner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .project-card:hover .project-inner {
+      transform: rotateY(180deg);
+    }
+    .project-front, .project-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .project-front {
+      background: #4e73df;
+      color: #fff;
+    }
+    .project-back {
+      background: #66bb6a;
+      color: #fff;
+      transform: rotateY(180deg);
+      padding: 20px;
+    }
+    .project-card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+    }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.4s; }
+    .project-card:nth-child(4) { animation-delay: 0.6s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <h2>My Dashboard</h2>
+      <ul>
+        <li><a href="home.html">🏠 Home</a></li>
+        <li><a href="analytics.html">📊 Analytics</a></li>
+        <li><a href="projects.html">📁 Projects</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+    <main class="main">
+      <header class="navbar">
+        <button id="toggleBtn">☰</button>
+        <span>Projects</span>
+        <a class="back-btn" href="index.html">🏠 Dashboard</a>
+      </header>
+      <section class="projects-grid">
+        <div class="project-card">
+          <div class="project-inner">
+            <div class="project-front">Project A</div>
+            <div class="project-back">Details about Project A</div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-inner">
+            <div class="project-front">Project B</div>
+            <div class="project-back">Details about Project B</div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-inner">
+            <div class="project-front">Project C</div>
+            <div class="project-back">Details about Project C</div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-inner">
+            <div class="project-front">Project D</div>
+            <div class="project-back">Details about Project D</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
