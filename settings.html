@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .settings-container {
+      padding: 40px;
+      max-width: 600px;
+    }
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+    .setting-item:nth-child(2) { animation-delay: 0.2s; }
+    .setting-item:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes fadeIn {
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <h2>My Dashboard</h2>
+      <ul>
+        <li><a href="home.html">🏠 Home</a></li>
+        <li><a href="analytics.html">📊 Analytics</a></li>
+        <li><a href="projects.html">📁 Projects</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+    <main class="main">
+      <header class="navbar">
+        <button id="toggleBtn">☰</button>
+        <span>Settings</span>
+        <a class="back-btn" href="index.html">🏠 Dashboard</a>
+      </header>
+      <section class="settings-container">
+        <div class="setting-item">
+          <span>Enable Notifications</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span>Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle2">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span>Auto Updates</span>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
